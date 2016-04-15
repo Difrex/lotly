@@ -1,0 +1,40 @@
+#!/usr/bin/python3
+# Author: Denis Zheleztsov <difrex.punk@gmail.com> (c) 2015-2016
+# License: GPL3
+
+import json
+import argparse
+import string
+import random
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-n', '--name', help='package name')
+parser.add_argument('-v', '--version', help='package version')
+parser.add_argument('-t', '--type', default='copy', help='copy/move. default: copy')
+parser.add_argument('-s', '--source', help='source distribution name')
+parser.add_argument('-d', '--destination', help='destination distribution name')
+args = parser.parse_args()
+
+f = open('/etc/lotly/config.json', 'r')
+js = f.read()
+conf = json.loads(js)
+f.close()
+
+s = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(6))
+watch_dir = conf['system']['watch_dir']
+
+lotly_file = watch_dir + '/' + s
+move_conf = {
+    "name": args.name, 
+    "version": args.version, 
+    "type": args.type, 
+    "source": args.source, 
+    "destination": args.destination
+}
+
+move_json = json.dumps(move_conf)
+
+# Write ctl file
+ctl = open(lotly_file, 'w')
+ctl.write(move_json)
+ctl.close()

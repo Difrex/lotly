@@ -1,0 +1,38 @@
+#!/usr/bin/perl
+# Author: Denis Zheleztsov <difrex.punk@gmail.com> (c) 2015-2016
+# License: GPL3
+
+use strict;
+use warnings;
+
+use LOTLY::CONFIG;
+use LOTLY::PRINTER;
+use LOTLY::PACKAGES;
+use Linux::Inotify2;
+
+use Data::Dumper;
+
+my $config     = LOTLY::CONFIG->new();
+my $lotly_conf = $config->load();
+
+my $printer  = LOTLY::PRINTER->new();
+my $packages = LOTLY::PACKAGES->new($lotly_conf);
+
+# Events
+my $inotify = Linux::Inotify2->new()
+    or $printer->error("Unable to create new inotify object: $!");
+
+$inotify->watch( $lotly_conf->{system}->{watch_dir}, IN_CREATE )
+    or $printer->error("Watcher creation failed: $!");
+
+# Main loop
+while (1) {
+    my @events = $inotify->read;
+    unless ( @events > 0 ) {
+        $printer->error("read error: $!");
+    }
+
+    for (@events) {
+        $packages->process($_);
+    }
+}

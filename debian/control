@@ -1,0 +1,28 @@
+Source: lotly
+Section: admin
+Priority: optional
+Maintainer: Denis Zheleztsov <difrex.punk@gmail.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+
+Package: lotly
+Architecture: all
+Depends: perl, mini-dinstall, libconfig-tiny-perl, liblinux-inotify2-perl
+Description: Package management for mini-dinstall
+ Lotly provides package management(copy and move) between flat repositories
+
+Package: lotly-printer-output-elasticsearch
+Architecture: all
+Depends: perl, libsearch-elasticsearch-perl, lotly
+Description: Elasticsearech printer output for lotly
+
+Package: lotlyctl
+Architecture: all
+Depends: python3, lotly
+Description: Control util for lotly
+ 
+Package: lotly-doc
+Architecture: all
+Description: documentation for lotly
+ Documentation for lotly
+

@@ -1,0 +1,21 @@
+{
+  "mini_dinstall_conf": "/srv/mini-dinstall.conf",
+  "system": {
+    "gpgid": "",
+    "watch_dir": "/var/tmp/lotly",
+    "mini_dinstall_stop": "/bin/systemctl stop mini-dinstall.service",
+    "mini_dinstall_start": "/bin/systemctl start mini-dinstall.service",
+    "mini_dinstall_path": "/usr/bin/mini-dinstall"
+  },
+  "output_type": "file",
+  "output": {
+    "elasticsearch": {
+      "hosts": [],
+      "index": "lotly"
+    },
+    "file": {
+      "log": "/var/log/lotly/lotly.log",
+      "err": "/var/log/lotly/lotly.err"
+    }
+  }
+}

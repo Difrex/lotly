@@ -1,0 +1,9 @@
+LOTLY/PRINTER/File.pm usr/share/perl5/LOTLY/PRINTER
+LOTLY/PRINTER.pm usr/share/perl5/LOTLY
+LOTLY/GPG.pm usr/share/perl5/LOTLY
+LOTLY/CONFIG.pm usr/share/perl5/LOTLY
+LOTLY/PACKAGES/Db.pm usr/share/perl5/LOTLY/PACKAGES
+LOTLY/PACKAGES/Move.pm usr/share/perl5/LOTLY/PACKAGES
+LOTLY/PACKAGES.pm usr/share/perl5/LOTLY
+lotly usr/bin
+conf/config.json etc/lotly

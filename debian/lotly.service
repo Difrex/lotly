@@ -1,0 +1,12 @@
+[Unit]
+Description=Lotly package management for mini-dinstall
+After=network.target 
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/lotly
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
